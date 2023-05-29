@@ -96,6 +96,16 @@ docker images
 ```
 docker pull mysql:latest
 ```
+Expected output
+<pre>
+jegan@tektutor.org $ <b>docker pull ubuntu:18.04</b>
+18.04: Pulling from library/ubuntu
+4e43cebf9258: Pull complete 
+Digest: sha256:14f1045816502e16fcbfc0b2a76747e9f5e40bc3899f8cfe20745abaafeaeab3
+Status: Downloaded newer image for ubuntu:18.04
+docker.io/library/ubuntu:18.04
+
+</pre>
 
 ## Finding more details about a docker container image
 ```
