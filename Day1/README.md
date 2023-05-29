@@ -79,3 +79,152 @@
 
 #### Docker Remote Registry 
 
+
+# Docker Commands
+
+## Finding the docker version
+```
+docker --version
+```
+
+## Listing the docker images in your local docker registry
+```
+docker images
+```
+
+## Downloading mysql docker image from Docker Hub Remote Registry to your Local docker registry
+```
+docker pull mysql:latest
+```
+
+## Finding more details about a docker container image
+```
+docker image inspect mysql:latest
+```
+
+Expected output
+<pre>
+ jegan@tektutor.org  ~/Desktop  docker image inspect mysql:latest
+[
+    {
+        "Id": "sha256:05db07cd74c0520c8ffe5f7638063719a886f9115cecacc0654d981caf5d27f7",
+        "RepoTags": [
+            "mysql:latest"
+        ],
+        "RepoDigests": [
+            "mysql@sha256:d6164ff4855b9b3f2c7748c6ec564ccff841f79a7023db0f9293143481a44b6e"
+        ],
+        "Parent": "",
+        "Comment": "",
+        "Created": "2023-05-24T21:43:13.237785913Z",
+        "Container": "f38d8f23cf17014cd5f9a6025dd60d0aac71eb192926e2021c03d06c5d5f5dd3",
+        "ContainerConfig": {
+            "Hostname": "f38d8f23cf17",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "ExposedPorts": {
+                "3306/tcp": {},
+                "33060/tcp": {}
+            },
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "GOSU_VERSION=1.16",
+                "MYSQL_MAJOR=8.0",
+                "MYSQL_VERSION=8.0.33-1.el8",
+                "MYSQL_SHELL_VERSION=8.0.33-1.el8"
+            ],
+            "Cmd": [
+                "/bin/sh",
+                "-c",
+                "#(nop) ",
+                "CMD [\"mysqld\"]"
+            ],
+            "Image": "sha256:a0749de12fb736aa86a85bfda7bdf618dcbf91ce2437875333191090aaba828b",
+            "Volumes": {
+                "/var/lib/mysql": {}
+            },
+            "WorkingDir": "",
+            "Entrypoint": [
+                "docker-entrypoint.sh"
+            ],
+            "OnBuild": null,
+            "Labels": {}
+        },
+        "DockerVersion": "20.10.23",
+        "Author": "",
+        "Config": {
+            "Hostname": "",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "ExposedPorts": {
+                "3306/tcp": {},
+                "33060/tcp": {}
+            },
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "GOSU_VERSION=1.16",
+                "MYSQL_MAJOR=8.0",
+                "MYSQL_VERSION=8.0.33-1.el8",
+                "MYSQL_SHELL_VERSION=8.0.33-1.el8"
+            ],
+            "Cmd": [
+                "mysqld"
+            ],
+            "Image": "sha256:a0749de12fb736aa86a85bfda7bdf618dcbf91ce2437875333191090aaba828b",
+            "Volumes": {
+                "/var/lib/mysql": {}
+            },
+            "WorkingDir": "",
+            "Entrypoint": [
+                "docker-entrypoint.sh"
+            ],
+            "OnBuild": null,
+            "Labels": null
+        },
+        "Architecture": "amd64",
+        "Os": "linux",
+        "Size": 564646609,
+        "VirtualSize": 564646609,
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/9dbadf4fa0e570573651cdd48b25a28e934df9892d6cf42db0a58666a2d8c7bd/diff:/var/lib/docker/overlay2/31a0daa9c4931f1a647751e66334ed113ba7d0669c54967d454bce6c3ef5e14d/diff:/var/lib/docker/overlay2/7d9c373d215a241bd336bf82b32b7601cae96a32625425bd78d4684865f7722e/diff:/var/lib/docker/overlay2/cd7210049b0b8c4b102ee2dfcb868bb7ce08d834f7d716638b9d2f8e35ec0b53/diff:/var/lib/docker/overlay2/00a006c77b4281d6f907b013337371846c42bbe87ac1e0d106234778689440e1/diff:/var/lib/docker/overlay2/a88a2dfde21fdb1799f7d7c1017f830d350bf53808e97f813a1e11fbaeaf69a5/diff:/var/lib/docker/overlay2/e7cd57269aaa4cda9261717da9bcb1c6d5a4cf0b55610e7567aee973e86d5b10/diff:/var/lib/docker/overlay2/25da735d3ead5b9cfd5db0b06eadd4fa3cdb2cd0bc8e8021c6d7ac4e018f44a4/diff:/var/lib/docker/overlay2/f4d704c58a8ba4a9c222e6637157f5b5c4518345e774ec87fb87cc7eb1a96a58/diff:/var/lib/docker/overlay2/6ac96d49d293ffa1b028773c14777189feff3099b95f86dcc40eff7f61a9af03/diff",
+                "MergedDir": "/var/lib/docker/overlay2/a43c2c06d59ef7d75ff51c7437e3802601924210db64cc0411c6df49362df433/merged",
+                "UpperDir": "/var/lib/docker/overlay2/a43c2c06d59ef7d75ff51c7437e3802601924210db64cc0411c6df49362df433/diff",
+                "WorkDir": "/var/lib/docker/overlay2/a43c2c06d59ef7d75ff51c7437e3802601924210db64cc0411c6df49362df433/work"
+            },
+            "Name": "overlay2"
+        },
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:f9a1099727ada7adafb59d00f8a586db4018c04bb4dc0c8561ec574c0860fb93",
+                "sha256:698db29e13b1981197cb0ce710cc5ec8ab882ef375df04710b11c842ccb1b02e",
+                "sha256:cd53b79fc46f820449da211a9a2b3b86d39e79d0856de185a40ddc80307d6793",
+                "sha256:1f9db33bba3e4cacd66d3ee4b0955e1aa5acdb4bdf7aaf115490b9fa0b0761fa",
+                "sha256:bbdc0c28b2fd28e65958c0bed61af66152c193dd27077287424e5282a8677f44",
+                "sha256:ab366f7baef0c2362d90fab3ee49b4d298e192a5d6b54065b4145cb1001d5621",
+                "sha256:e19c4f39b626a33c89f93bac4c0bc9a820041bb4f7cfc88cf573e3cc57864a18",
+                "sha256:eba93af91d818c69e82c3d5f46e09f2952a32d43fa5c236d40c9d8418f1c74af",
+                "sha256:baaa5d2f07a7e78f4999c5f5f59aa3b6973948895cb1a9e9c621d1b7680f1d7a",
+                "sha256:ecc3fd0b4a47f15a38ccee317f6dfbe21006ed5a65ee86395afbc83876b52336",
+                "sha256:409c7593682e8197611f748dd744b022ddb4054c79b7b8709a6f9557fe6c94c5"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "0001-01-01T00:00:00Z"
+        }
+    }
+]
+</pre>
