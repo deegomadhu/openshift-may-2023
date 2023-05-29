@@ -504,3 +504,75 @@ Now you should be access the lb setup from your RPS Windows lab machine web brow
 10.10.15.2:8001
 ```
 
+## Lab - Using external storage to save your application data
+```
+ls -l /tmp/mysql*
+mkdir -p /tmp/mysql
+docker run -d --name mysql --hostname mysql -e MYSQL_ROOT_PASSWORD=root@123 -v /tmp/mysql:/var/lib/mysql mysql:latest
+docker ps
+```
+
+Now let's get inside the mysql container shell
+```
+docker exec -it mysql sh
+```
+
+Let's connect to the mysql server
+```
+mysql -u root -p
+```
+When it prompts for password, type 'root@123' without the quotes.
+
+Let's create a database
+```
+CREATE DATABASE tektutor;
+USE tektutor;
+CREATE TABLE training ( id INT NOT NULL, name VARCHAR(100), duration VARCHAR(100), PRIMARY KEY(id) );
+```
+
+Let's insert some records into the training table
+```
+INSERT INTO training VALUES ( 1, "Docker and Kubernetes", "5 Days" );
+INSERT INTO training VALUES ( 2, "Microservices with Go lang", "5 Days" );
+INSERT INTO training VALUES ( 3, "OpenShift", "5 Days" );
+```
+
+Let's list the records
+```
+SELECT * FROM training;
+```
+
+Let's exit from the mysql prompt and mysql container
+```
+exit
+exit
+```
+
+Let's delete the mysql container
+```
+docker rm -f mysql
+docker ps
+```
+
+Let's recreate a new mysql and mount the same external volume location
+```
+docker run -d --name mysql --hostname mysql -e MYSQL_ROOT_PASSWORD=root@123 -v /tmp/mysql:/var/lib/mysql mysql:latest
+docker ps
+```
+
+Let's get inside the container
+```
+docker exec -it mysql sh
+mysql -u root -p
+```
+When it prompts for password, type root@123
+
+Try the below
+```
+SHOW DATABASES;
+USE tektutor;
+SHOW TABLES;
+SELECT * FROM training;
+```
+
+You are supposed to see the records in tact as we used stored the mysql records in an external volume storage.
