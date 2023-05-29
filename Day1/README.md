@@ -388,7 +388,7 @@ CONTAINER ID   IMAGE          COMMAND       CREATED         STATUS         PORTS
 3. To improve security
 
 
-## Lab - Setup a Load Balancer with nginx
+## ⛹️‍♂️ Lab - Setup a Load Balancer with nginx
 
 Let's create 3 web servers with nginx docker image
 ```
