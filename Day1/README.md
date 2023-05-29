@@ -478,7 +478,7 @@ docker inspect -f {{.NetworkSettings.IPAddress}} lb
 In my case, the lb container's IP address happens to be 172.17.0.5, hence on my lab browser
 I can access the 172.17.0.5 to see the traffic getting routed to different nginx containers in a round robin fashion.
 
-## Lab - Accessing your applications running within containers from external machine using Port Forwading
+## ⛹️‍♂️ Lab - Accessing your applications running within containers from external machine using Port Forwading
 
 Assuming your nginx1, nginx2 nginx3 and lb containers are already running. Let's delete only the lb container to perform port-forwarding on our new lb container.
 
