@@ -488,7 +488,7 @@ docker run -d --name lb --hostname lb -p 8001:80 nginx:latest
 ```
 In the above run command, you may have to replace 8001 with some other available port in case someone has already used it on your CentOS server.
 
-We need to copy the nginx.conf load balancer configuration that we did in our previous lab into the lb container.
+We need to copy the nginx.conf load balancer configuration that we did in our previous lab into the new lb container.
 ```
 docker cp nginx.conf lb:/etc/nginx/nginx.conf
 ```
