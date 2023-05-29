@@ -301,3 +301,17 @@ Expected output
     }
 ]
 </pre>
+
+## Deleting a Docker image
+```
+docker rmi ubuntu:20.04
+```
+
+Expected output
+<pre>
+jegan@tektutor.org $ <b>docker rmi ubuntu:20.04</b>
+Untagged: ubuntu:20.04
+Untagged: ubuntu@sha256:db8bf6f4fb351aa7a26e27ba2686cf35a6a409f65603e59d4c203e58387dc6b3
+Deleted: sha256:88bd6891718934e63638d9ca0ecee018e69b638270fe04990a310e5c78ab4a92
+Deleted: sha256:6f37ca73c74f2cef0ddefd960260f2033c16c84583c5507a4f37b1cf7631dc20
+</pre>
