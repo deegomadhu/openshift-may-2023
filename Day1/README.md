@@ -386,3 +386,89 @@ CONTAINER ID   IMAGE          COMMAND       CREATED         STATUS         PORTS
 1. To handle the application traffic quickly with many servers/applications
 2. To ensure high-availability
 3. To improve security
+
+
+## Lab - Setup a Load Balancer with nginx
+
+Let's create 3 web servers with nginx docker image
+```
+docker run -d --name nginx1 --hostname nginx1 nginx:latest
+docker run -d --name nginx2 --hostname nginx2 nginx:latest
+docker run -d --name nginx3 --hostname nginx3 nginx:latest
+```
+
+Let's list the containers and check if all the nginx web servers are running
+```
+docker ps
+```
+
+Let's create the load balancer container
+```
+docker run -d --name lb --hostname lb nginx:latest
+```
+
+Now we need to configure the lb container to work like a load balancer, hence let's copy the nginx.conf file from container to local machine to configure it
+```
+docker cp lb:/etc/nginx/nginx.conf .
+```
+
+Edit the nginx.conf on your local machine with the below content
+```
+user  nginx;
+worker_processes  auto;
+
+error_log  /var/log/nginx/error.log notice;
+pid        /var/run/nginx.pid;
+
+
+events {
+    worker_connections  1024;
+}
+
+http {
+    upstream backend {
+        server 172.17.0.2:80;
+        server 172.17.0.3:80;
+        server 172.17.0.4:80;
+    }
+    
+    server {
+        location / {
+            proxy_pass http://backend;
+        }
+    }
+}
+```
+
+In the above file, 172.17.0.2 is my nginx1 IP address, 172.17.0.3 is the nginx2 IP address and 172.17.0.4 is the nginx3 container's IP Address. Update them after checking your nginx container IP addresses accordingly.
+
+Now let's copy the nginx.conf from local machine to the lb container
+```
+docker cp nginx.conf lb:/etc/nginx/nginx.conf
+```
+
+To apply the config change, we need to restart the container
+```
+docker restart lb
+docker ps
+```
+
+We can also update the index.html files on nginx1, nginx2 and nginx3 to verify the pages are really coming from nginx1, nginx2 and nginx3 web servers.
+```
+echo "Web Server 1" > index.html
+docker cp index.html nginx1:/usr/share/nginx/html/index.html
+
+echo "Web Server 2" > index.html
+docker cp index.html nginx2:/usr/share/nginx/html/index.html
+
+echo "Web Server 3" > index.html
+docker cp index.html nginx3:/usr/share/nginx/html/index.html
+```
+
+Now, its time to verify if the Load Balancer is working as configured. Let's find the IP address of our lb container
+```
+docker inspect -f {{.NetworkSettings.IPAddress}} lb
+```
+
+In my case, the lb container's IP address happens to be 172.17.0.5, hence on my lab browser
+I can access the 172.17.0.5 to see the traffic getting routed to different nginx containers in a round robin fashion.
