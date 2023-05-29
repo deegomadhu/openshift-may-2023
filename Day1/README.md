@@ -108,6 +108,25 @@
 
 #### Docker Remote Registry 
 
+## Network Subnet
+Let's take this subnet 172.17.0.0/16
+- IPV4 IP address has 32 bits(4 bytes)
+- 172(1 byte - 8 bits)
+- 17(1 byte - 8 bits)
+- 0 (1 byte - 8 bits)
+- 0 (1 byte - 8 bits)
+- /16 is CIDR
+- 172.17.0.0
+- 172.17.0.1
+- ...
+- 172.17.0.255
+- 172.17.1.0
+- 172.17.1.1 ( Gateway - this is the IP address of docker0 bridge/gateway )
+- ...
+- 172.17.1.255
+- ...
+- 172.17.255.255
+- Total IP addresses = 256 x 256 = 65536 IP addresses
 
 # Docker Commands
 
@@ -362,3 +381,8 @@ jegan@tektutor.org $ <b>docker ps</b>
 CONTAINER ID   IMAGE          COMMAND       CREATED         STATUS         PORTS     NAMES
 4e26ffa1ed02   ubuntu:22.04   "/bin/bash"   3 seconds ago   Up 2 seconds             c1
 </pre>
+
+## Problems that a loadbalancer solves ( use cases for load balancers )
+1. To handle the application traffic quickly with many servers/applications
+2. To ensure high-availability
+3. To improve security
