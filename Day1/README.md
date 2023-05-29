@@ -94,7 +94,7 @@ docker info
 
 Expected output
 <pre>
- jegan@tektutor.org  ~/Desktop  docker info
+ jegan@tektutor.org $ <b>docker info</b>
 Client:
  Context:    default
  Debug Mode: false
