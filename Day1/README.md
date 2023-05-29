@@ -325,7 +325,10 @@ Expected output
 <pre>
 jegan@tektutor.org $ <b>docker run -dit --name c1 --hostname c1 ubuntu:22.04 /bin/bash</b>
 4e26ffa1ed02eda5090f3388bbda599e13368f6ed38249d2c11bf412651429a4
+</pre>
 
+List the running containers
+<pre>
 jegan@tektutor.org $ <b>docker ps</b>
 CONTAINER ID   IMAGE          COMMAND       CREATED         STATUS         PORTS     NAMES
 4e26ffa1ed02   ubuntu:22.04   "/bin/bash"   3 seconds ago   Up 2 seconds             c1
