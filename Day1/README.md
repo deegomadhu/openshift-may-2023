@@ -504,7 +504,7 @@ Now you should be access the lb setup from your RPS Windows lab machine web brow
 10.10.15.2:8001
 ```
 
-## Lab - Using external storage to save your application data
+## ⛹️‍♂️ Lab - Using external storage to save your application data
 ```
 ls -l /tmp/mysql*
 mkdir -p /tmp/mysql
