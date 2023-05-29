@@ -407,6 +407,11 @@ Let's create the load balancer container
 docker run -d --name lb --hostname lb nginx:latest
 ```
 
+Let's list the containers and check if all the nginx web servers and lb container are running
+```
+docker ps
+```
+
 Now we need to configure the lb container to work like a load balancer, hence let's copy the nginx.conf file from container to local machine to configure it
 ```
 docker cp lb:/etc/nginx/nginx.conf .
