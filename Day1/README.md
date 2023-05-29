@@ -4,6 +4,35 @@
 - container technology
 - an application virtualization technology
 - this represents a single application not an Operating System
+- based on Linux kernel features
+  - namespace
+    - is used to isolate an application process from other processes running on the same OS
+  - control group (CGroup)
+    - is used to apply resource quota restrictions on a container level
+    - example
+      - we can control how many cpu cores a container can utilize on the system at the max
+      - we can control how much RAM a container can utilize on the system where it runs
+
+## What are the Docker alternative tools available
+- LXC
+- containerd
+- CRI-O
+- Podman
+
+## What is a Container Engine?
+- is a high-level tool that offers user friendly commands to manage images and containers
+- example
+  - Docker
+    - depends on containerd which in turns depends on runC to manage containers
+  - Podman
+
+## What is a Container runtime?
+- is the low-level tool that actually manages the containers
+- these tools are not generally used by end-users like us
+- these tools are used by Container Engine
+- example
+  - CRI-O
+  - runC
 
 ## What is a Processor?
 - is an Integrated Circuit (IC)
