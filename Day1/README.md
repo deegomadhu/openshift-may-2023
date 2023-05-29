@@ -315,3 +315,18 @@ Untagged: ubuntu@sha256:db8bf6f4fb351aa7a26e27ba2686cf35a6a409f65603e59d4c203e58
 Deleted: sha256:88bd6891718934e63638d9ca0ecee018e69b638270fe04990a310e5c78ab4a92
 Deleted: sha256:6f37ca73c74f2cef0ddefd960260f2033c16c84583c5507a4f37b1cf7631dc20
 </pre>
+
+## Creating a container in the background mode
+```
+docker run -dit --name c1 --hostname c1 ubuntu:22.04 /bin/bash
+```
+
+Expected output
+<pre>
+jegan@tektutor.org $ <b>docker run -dit --name c1 --hostname c1 ubuntu:22.04 /bin/bash</b>
+4e26ffa1ed02eda5090f3388bbda599e13368f6ed38249d2c11bf412651429a4
+
+jegan@tektutor.org $ <b>docker ps</b>
+CONTAINER ID   IMAGE          COMMAND       CREATED         STATUS         PORTS     NAMES
+4e26ffa1ed02   ubuntu:22.04   "/bin/bash"   3 seconds ago   Up 2 seconds             c1
+</pre>
