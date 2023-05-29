@@ -382,7 +382,7 @@ CONTAINER ID   IMAGE          COMMAND       CREATED         STATUS         PORTS
 4e26ffa1ed02   ubuntu:22.04   "/bin/bash"   3 seconds ago   Up 2 seconds             c1
 </pre>
 
-## Problems that a loadbalancer solves ( use cases for load balancers )
+## Problems that a loadbalancer solves ( usecases for load balancers )
 1. To handle the application traffic quickly with many servers/applications
 2. To ensure high-availability
 3. To improve security
