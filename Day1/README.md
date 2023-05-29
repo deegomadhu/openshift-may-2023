@@ -477,3 +477,30 @@ docker inspect -f {{.NetworkSettings.IPAddress}} lb
 
 In my case, the lb container's IP address happens to be 172.17.0.5, hence on my lab browser
 I can access the 172.17.0.5 to see the traffic getting routed to different nginx containers in a round robin fashion.
+
+## Lab - Accessing your applications running within containers from external machine using Port Forwading
+
+Assuming your nginx1, nginx2 nginx3 and lb containers are already running. Let's delete only the lb container to perform port-forwarding on our new lb container.
+
+```
+docker rm -f lb
+docker run -d --name lb --hostname lb -p 8001:80 nginx:latest
+```
+In the above run command, you may have to replace 8001 with some other available port in case someone has already used it on your CentOS server.
+
+We need to copy the nginx.conf load balancer configuration that we did in our previous lab into the lb container.
+```
+docker cp nginx.conf lb:/etc/nginx/nginx.conf
+```
+
+Let's restart the lb container to apply config changes.
+```
+docker restart lb
+docker ps
+```
+
+Now you should be access the lb setup from your RPS Windows lab machine web browser
+```
+10.10.15.2:8001
+```
+
