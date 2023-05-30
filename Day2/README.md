@@ -668,3 +668,34 @@ Commercial support is available at
 </body>
 </html>
 ```
+
+## Lab - Understanding service discovery
+Service discovery helps us access a service by its name within the Kubernetes/OpenShift cluster.
+
+Let's us list the services
+```
+oc get svc
+oc describe svc/nginx
+```
+
+To test the service discovery, let's a utility pod
+```
+oc create deploy hello --image=tektutor/spring-tektutor-helloms:latest
+```
+
+Let's get inside the hello pod
+```
+oc rsh deploy/hello
+```
+
+Let's see if we are able to access the nginx service by its name within the hello pod
+```
+curl http://nginx:8080
+```
+In the above url, nginx is the name of NodePort service. You are expected to see response from the nginx pod.
+
+You may also check the /etc/resolv.conf content within the hello pod
+```
+cat /etc/resolv.conf
+```
+You will see an nameserver IP, that nameserver is the one which resolves the nginx service name to its corresponding IP address.
