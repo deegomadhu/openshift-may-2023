@@ -699,3 +699,92 @@ You may also check the /etc/resolv.conf content within the hello pod
 cat /etc/resolv.conf
 ```
 You will see a nameserver IP, that nameserver is the one which resolves the nginx service name to its corresponding IP address.
+
+
+## Lab - Creating an internal ClusterIP Service
+```
+jegan@tektutor:~/openshift-may-2023$ oc delete svc/nginx
+service "nginx" deleted
+
+jegan@tektutor:~/openshift-may-2023$ oc get svc
+No resources found in jegan namespace.
+
+jegan@tektutor:~/openshift-may-2023$ oc expose deploy/nginx --type=ClusterIP --port=8080
+service/nginx exposed
+
+jegan@tektutor:~/openshift-may-2023$ oc get svc
+NAME    TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+nginx   ClusterIP   172.30.87.109   <none>        8080/TCP   4s
+
+jegan@tektutor:~/openshift-may-2023$ oc describe svc/nginx
+Name:              nginx
+Namespace:         jegan
+Labels:            app=nginx
+Annotations:       <none>
+Selector:          app=nginx
+Type:              ClusterIP
+IP Family Policy:  SingleStack
+IP Families:       IPv4
+IP:                172.30.87.109
+IPs:               172.30.87.109
+Port:              <unset>  8080/TCP
+TargetPort:        8080/TCP
+Endpoints:         10.128.0.84:8080,10.128.2.10:8080,10.129.1.12:8080 + 2 more...
+Session Affinity:  None
+Events:            <none>
+
+jegan@tektutor:~/openshift-may-2023$ oc rsh deploy/hello
+
+sh-4.4$ curl http://nginx:8080
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+
+sh-4.4$ curl 172.30.87.109:8080
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+sh-4.4$ exit
+exit
+```
