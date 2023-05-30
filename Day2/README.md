@@ -698,4 +698,4 @@ You may also check the /etc/resolv.conf content within the hello pod
 ```
 cat /etc/resolv.conf
 ```
-You will see an nameserver IP, that nameserver is the one which resolves the nginx service name to its corresponding IP address.
+You will see a nameserver IP, that nameserver is the one which resolves the nginx service name to its corresponding IP address.
