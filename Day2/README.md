@@ -788,3 +788,15 @@ Commercial support is available at
 sh-4.4$ exit
 exit
 ```
+
+## Port forwarding on a Pod for debugging/testing purpose
+```
+jegan@tektutor:~/openshift-may-2023$ oc port-forward pod/nginx-799697bd89-xkvvt 9090:8080
+Forwarding from 127.0.0.1:9090 -> 8080
+Forwarding from [::1]:9090 -> 8080
+Handling connection for 9090
+Handling connection for 9090
+```
+Now, you may access the pod web page from your web browser http://localhost:9090
+
+The port 9090 is on the localmachine, while 8080 is the ports where nginx web server is listening inside the Pod.
