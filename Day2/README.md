@@ -453,3 +453,30 @@ Expected output
 jegan@tektutor:~/openshift-may-2023$ <b>oc project default</b>
 Now using project "default" on server "https://api.ocp4.tektutor.org.ocp:6443".
 </pre>
+
+
+## Lab - Creating your first deployment in OpenShift
+```
+oc create deploy nginx --image=bitnami/nginx:latest
+oc get deploy
+oc get rs
+oc get po
+```
+
+Expected output
+<pre>
+jegan@tektutor:~/openshift-may-2023$ <b>oc create deploy nginx --image=bitnami/nginx:latest</b>
+deployment.apps/nginx created
+
+jegan@tektutor:~/openshift-may-2023$ <b>oc get deploy</b>
+NAME    READY   UP-TO-DATE   AVAILABLE   AGE
+nginx   1/1     1            1           14s
+
+jegan@tektutor:~/openshift-may-2023$ <b>oc get rs</b>
+NAME               DESIRED   CURRENT   READY   AGE
+nginx-5bccb79775   1         1         1       19s
+
+jegan@tektutor:~/openshift-may-2023$ <b>oc get po</b>
+NAME                     READY   STATUS    RESTARTS   AGE
+nginx-5bccb79775-vhmp9   1/1     Running   0          21s
+</pre>
