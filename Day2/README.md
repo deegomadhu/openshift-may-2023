@@ -594,3 +594,18 @@ $ pwd
 /app
 $ exit
 ```
+
+## Lab - Finding Pod IP address
+```
+oc get pods -o wide
+```
+
+Expected output
+<pre>
+jegan@tektutor:~/openshift-may-2023$ oc get po -o wide
+NAME                     READY   STATUS             RESTARTS      AGE     IP            NODE                             NOMINATED NODE   READINESS GATES
+mysql-647f5d777c-grkds   0/1     CrashLoopBackOff   6 (33s ago)   6m43s   10.128.2.11   worker-2.ocp4.tektutor.org.ocp   <none>           <none>
+nginx-799697bd89-586gh   1/1     Running            0             14m     10.128.2.10   worker-2.ocp4.tektutor.org.ocp   <none>           <none>
+nginx-799697bd89-csl7s   1/1     Running            0             14m     10.131.0.42   worker-1.ocp4.tektutor.org.ocp   <none>           <none>
+nginx-799697bd89-jjdm6   1/1     Running            0             13m     10.130.0.59   master-1.ocp4.tektutor.org.ocp   <none>           <none>
+</pre>
