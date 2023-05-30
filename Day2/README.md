@@ -799,4 +799,4 @@ Handling connection for 9090
 ```
 Now, you may access the pod web page from your web browser http://localhost:9090
 
-The port 9090 is on the localmachine, while 8080 is the ports where nginx web server is listening inside the Pod.
+The port 9090 is on the local machine, while 8080 is the port where nginx web server is listening inside the Pod.
