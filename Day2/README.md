@@ -430,3 +430,14 @@ openshift-service-ca-operator                      Active   6h31m
 openshift-user-workload-monitoring                 Active   6h31m
 openshift-vsphere-infra                            Active   6h31m
 </pre>
+
+## Finding the currently active project
+```
+oc project
+```
+
+Expected output
+<pre>
+jegan@tektutor:~/openshift-may-2023$ <b>oc project</b>
+Using project "jegan" on server "https://api.ocp4.tektutor.org.ocp:6443".
+</pre>
