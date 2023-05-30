@@ -441,3 +441,15 @@ Expected output
 jegan@tektutor:~/openshift-may-2023$ <b>oc project</b>
 Using project "jegan" on server "https://api.ocp4.tektutor.org.ocp:6443".
 </pre>
+
+## Switch to a different project let's say default project/namespace
+```
+oc get projects
+oc project default
+```
+
+Expected output
+<pre>
+jegan@tektutor:~/openshift-may-2023$ <b>oc project default</b>
+Now using project "default" on server "https://api.ocp4.tektutor.org.ocp:6443".
+</pre>
