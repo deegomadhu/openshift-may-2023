@@ -259,3 +259,23 @@ Allocated resources:
   hugepages-2Mi      0 (0%)        0 (0%)
 Events:              <none>
 </pre>
+
+## Creating a new project in OpenShift
+```
+oc new-project jegan
+```
+You will have to replace 'jegan' with your name to avoid conflicts.
+
+Expected output
+<pre>
+jegan@tektutor:~/openshift-may-2023$ <b>oc new-project jegan</b>
+Now using project "jegan" on server "https://api.ocp4.tektutor.org.ocp:6443".
+
+You can add applications to this project with the 'new-app' command. For example, try:
+
+    oc new-app rails-postgresql-example
+
+to build a new example application in Ruby. Or use kubectl to deploy a simple Kubernetes application:
+
+    kubectl create deployment hello-node --image=registry.k8s.io/e2e-test-images/agnhost:2.43 -- /agnhost serve-hostname
+</pre>
