@@ -480,3 +480,43 @@ jegan@tektutor:~/openshift-may-2023$ <b>oc get po</b>
 NAME                     READY   STATUS    RESTARTS   AGE
 nginx-5bccb79775-vhmp9   1/1     Running   0          21s
 </pre>
+
+## Lab - Scaling up/down your deployments
+```
+oc get pods
+oc scale deploy/nginx --replicas=3
+oc get pods -o wide -w
+
+```
+Expected output
+<pre>
+jegan@tektutor:~/openshift-may-2023$ <b>oc scale deploy/nginx --replicas=3</b>
+deployment.apps/nginx scaled
+
+jegan@tektutor:~/openshift-may-2023$ <b>oc get po -w</b>
+NAME                     READY   STATUS              RESTARTS   AGE
+nginx-5bccb79775-dzl5l   0/1     ContainerCreating   0          5s
+nginx-5bccb79775-hd6kn   0/1     ContainerCreating   0          5s
+nginx-5bccb79775-vhmp9   1/1     Running             0          9m44s
+nginx-5bccb79775-hd6kn   1/1     Running             0          12s
+nginx-5bccb79775-dzl5l   1/1     Running             0          15s
+
+jegan@tektutor:~/openshift-may-2023$ <b>oc get po -o wide</b>
+NAME                     READY   STATUS    RESTARTS   AGE   IP             NODE                             NOMINATED NODE   READINESS GATES
+nginx-5bccb79775-dzl5l   1/1     Running   0          27s   10.129.0.219   master-3.ocp4.tektutor.org.ocp   <none>           <none>
+nginx-5bccb79775-hd6kn   1/1     Running   0          27s   10.128.2.6     worker-2.ocp4.tektutor.org.ocp   <none>           <none>
+nginx-5bccb79775-vhmp9   1/1     Running   0          10m   10.131.0.34    worker-1.ocp4.tektutor.org.ocp   <none>           <none>
+
+jegan@tektutor:~/openshift-may-2023$ <b>oc scale deploy/nginx --replicas=2</b>
+deployment.apps/nginx scaled
+
+jegan@tektutor:~/openshift-may-2023$ <b>oc get po -o wide</b>
+NAME                     READY   STATUS    RESTARTS   AGE   IP             NODE                             NOMINATED NODE   READINESS GATES
+nginx-5bccb79775-dzl5l   1/1     Running   0          59s   10.129.0.219   master-3.ocp4.tektutor.org.ocp   <none>           <none>
+nginx-5bccb79775-vhmp9   1/1     Running   0          10m   10.131.0.34    worker-1.ocp4.tektutor.org.ocp   <none>           <none>
+
+jegan@tektutor:~/openshift-may-2023$ <b>oc get po -o wide -w</b>
+NAME                     READY   STATUS    RESTARTS   AGE   IP             NODE                             NOMINATED NODE   READINESS GATES
+nginx-5bccb79775-dzl5l   1/1     Running   0          63s   10.129.0.219   master-3.ocp4.tektutor.org.ocp   <none>           <none>
+nginx-5bccb79775-vhmp9   1/1     Running   0          10m   10.131.0.34    worker-1.ocp4.tektutor.org.ocp   <none>           <none>
+</pre>
