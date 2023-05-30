@@ -520,3 +520,28 @@ NAME                     READY   STATUS    RESTARTS   AGE   IP             NODE 
 nginx-5bccb79775-dzl5l   1/1     Running   0          63s   10.129.0.219   master-3.ocp4.tektutor.org.ocp   <none>           <none>
 nginx-5bccb79775-vhmp9   1/1     Running   0          10m   10.131.0.34    worker-1.ocp4.tektutor.org.ocp   <none>           <none>
 </pre>
+
+## Lab - Delete a pod
+```
+oc delete pod/nginx-5bccb79775-dzl5l
+```
+
+Expected output
+<pre>
+jegan@tektutor:~/openshift-may-2023$ <b>oc delete pod/nginx-5bccb79775-dzl5l</b>
+pod "nginx-5bccb79775-dzl5l" deleted
+</pre>
+
+## Lab - Delete a deployment
+```
+oc delete deploy/nginx
+```
+
+Expected output
+<pre>
+egan@tektutor:~/openshift-may-2023$ oc delete deploy/nginx
+deployment.apps "nginx" deleted
+
+jegan@tektutor:~/openshift-may-2023$ oc get deploy,rs,po
+No resources found in jegan namespace.
+</pre>
