@@ -17,3 +17,15 @@
   - you can check how many differt revisions of your application is available in the container orchestration platform cluster
   - it also supports exposing your applications via a service abstraction
   - it supports service discovery
+  - comes with in-built load balancers
+  - supports 2 types of services
+    1. Internal service
+       - are accessible only within the container orchestration cluster
+       - example
+         - ClusterIP Service
+    2. External service
+       - are accessible outside the container orchestration cluster as well
+       - example
+         - NodePort Service
+         - LoadBalancer Service
+  - OpenShift also supports a new feature called route which provides a friendly URL similar to Kubernetes Ingress that helps you access the service outside the cluster network( or from Internet/LAN, etc.,)
