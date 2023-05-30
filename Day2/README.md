@@ -609,3 +609,56 @@ nginx-799697bd89-586gh   1/1     Running            0             14m     10.128
 nginx-799697bd89-csl7s   1/1     Running            0             14m     10.131.0.42   worker-1.ocp4.tektutor.org.ocp   <none>           <none>
 nginx-799697bd89-jjdm6   1/1     Running            0             13m     10.130.0.59   master-1.ocp4.tektutor.org.ocp   <none>           <none>
 </pre>
+
+## Lab - Creating an external NodePort Service
+```
+jegan@tektutor:~/openshift-may-2023$ oc expose deploy/nginx --type=NodePort --port=8080
+service/nginx exposed
+jegan@tektutor:~/openshift-may-2023$ oc get services
+NAME    TYPE       CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+nginx   NodePort   172.30.248.248   <none>        8080:30576/TCP   5s
+jegan@tektutor:~/openshift-may-2023$ oc get service
+NAME    TYPE       CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+nginx   NodePort   172.30.248.248   <none>        8080:30576/TCP   9s
+jegan@tektutor:~/openshift-may-2023$ oc get svc
+NAME    TYPE       CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+nginx   NodePort   172.30.248.248   <none>        8080:30576/TCP   12s
+jegan@tektutor:~/openshift-may-2023$ oc get nodes
+NAME                             STATUS   ROLES                         AGE   VERSION
+master-1.ocp4.tektutor.org.ocp   Ready    control-plane,master,worker   9h    v1.26.3+b404935
+master-2.ocp4.tektutor.org.ocp   Ready    control-plane,master,worker   9h    v1.26.3+b404935
+master-3.ocp4.tektutor.org.ocp   Ready    control-plane,master,worker   9h    v1.26.3+b404935
+worker-1.ocp4.tektutor.org.ocp   Ready    worker                        8h    v1.26.3+b404935
+worker-2.ocp4.tektutor.org.ocp   Ready    worker                        8h    v1.26.3+b404935
+jegan@tektutor:~/openshift-may-2023$ oc get nodes -o wide
+NAME                             STATUS   ROLES                         AGE   VERSION           INTERNAL-IP       EXTERNAL-IP   OS-IMAGE                                                       KERNEL-VERSION                 CONTAINER-RUNTIME
+master-1.ocp4.tektutor.org.ocp   Ready    control-plane,master,worker   9h    v1.26.3+b404935   192.168.122.209   <none>        Red Hat Enterprise Linux CoreOS 413.92.202305041429-0 (Plow)   5.14.0-284.13.1.el9_2.x86_64   cri-o://1.26.3-3.rhaos4.13.git641290e.el9
+master-2.ocp4.tektutor.org.ocp   Ready    control-plane,master,worker   9h    v1.26.3+b404935   192.168.122.155   <none>        Red Hat Enterprise Linux CoreOS 413.92.202305041429-0 (Plow)   5.14.0-284.13.1.el9_2.x86_64   cri-o://1.26.3-3.rhaos4.13.git641290e.el9
+master-3.ocp4.tektutor.org.ocp   Ready    control-plane,master,worker   9h    v1.26.3+b404935   192.168.122.123   <none>        Red Hat Enterprise Linux CoreOS 413.92.202305041429-0 (Plow)   5.14.0-284.13.1.el9_2.x86_64   cri-o://1.26.3-3.rhaos4.13.git641290e.el9
+worker-1.ocp4.tektutor.org.ocp   Ready    worker                        8h    v1.26.3+b404935   192.168.122.245   <none>        Red Hat Enterprise Linux CoreOS 413.92.202305041429-0 (Plow)   5.14.0-284.13.1.el9_2.x86_64   cri-o://1.26.3-3.rhaos4.13.git641290e.el9
+worker-2.ocp4.tektutor.org.ocp   Ready    worker                        8h    v1.26.3+b404935   192.168.122.230   <none>        Red Hat Enterprise Linux CoreOS 413.92.202305041429-0 (Plow)   5.14.0-284.13.1.el9_2.x86_64   cri-o://1.26.3-3.rhaos4.13.git641290e.el9
+jegan@tektutor:~/openshift-may-2023$ curl 192.168.122.209:30576
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+```
