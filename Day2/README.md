@@ -678,7 +678,7 @@ oc get svc
 oc describe svc/nginx
 ```
 
-To test the service discovery, let's a utility pod
+To test the service discovery, let's create a utility pod
 ```
 oc create deploy hello --image=tektutor/spring-tektutor-helloms:latest
 ```
